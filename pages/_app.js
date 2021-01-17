@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'preact/hooks';
 import Router from 'next/router';
 
 function MyApp({ Component, pageProps }) {
