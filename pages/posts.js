@@ -8,84 +8,163 @@ import httpGet from '../utils';
 function Posts({ postsData }) {
   return (
     <Layout>
-      <div className="container">
+      <style jsx>{`
+        .posts {
+          display: grid;
+          grid-template-columns: 4fr 4fr 4fr;
+          grid-template-rows: 12fr;
+          grid-gap: 24px;
+        }
+        .posts__item {
+          padding: 24px 24px;
+          border: 1px solid #d8d8d8;
+          border-radius: 12px;
+          background-color: #fbfbfb;
+        }
+        .posts__image-holder {
+          width: 128px;
+          height: 128px;
+          margin: 0 auto;
+          border: 1px solid #d8d8d8;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        .posts__image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .posts__title{ 
+          margin-top: 16px;
+          font-weight: 700;
+          font-size: 16px;
+          color: #242424;
+          line-height: 18px;
+          text-align: center;
+        }
+        .posts__title:first-letter {
+          text-transform: capitalize;
+        }
+        .posts__info {
+          display: block;
+          margin-top: 8px;
+          font-weight: normal;
+          font-size: 14px;
+          color: #2b2b2b;
+          line-height: 16px;
+          text-align: center;
+        }
+        .posts__details {
+          margin-top: 24px;
+        }
+        .posts__tag{
+          display: block;
+          margin-top: 8px;
+          font-weight: normal;
+          font-size: 14px;
+          color: #2b2b2b;
+          line-height: 16px;
+          text-align: center;
+        }
+        .posts__text {
+          font-weight: normal;
+          font-size: 14px;
+          color: #2b2b2b;
+          line-height: 16px;
+          text-align: center
+        }
+        .posts__details-link-holder {
+          margin-top: 16px;
+          text-align: center;
+        }
+        .posts__details-link {
+          display: inline-block;
+          vertical-align: top;
+          min-width: 120px;
+          height: 32px;
+          padding: 0 16px;
+          border-radius: 4px;
+          font-weight: normal;
+          font-size: 14px;
+          color: #fff;
+          line-height: 32px;
+          text-align: center;
+          background-color: #0596e9;
+          transition: background-color 0.23s ease-in-out;
+          cursor: pointer;
+        }
+        .posts__details-link:hover {
+          background-color: #067abd;
+        }
+        .posts__link-holder {
+          margin-top: 16px;
+          text-align: center;
+        }
+        .posts__link {
+          display: inline-block;
+          vertical-align: top;
+          min-width: 120px;
+          height: 32px;
+          padding: 0 16px;
+          border-radius: 4px;
+          font-weight: normal;
+          font-size: 14px;
+          color: #fff;
+          line-height: 32px;
+          text-align: center;
+          background-color: #0596e9;
+          transition: background-color 0.23s ease-in-out;
+        }
+        .posts__link:hover {
+          background-color: #067abd;
+        }
+      `}</style>
+
+      <div className="posts">
         {postsData.map(
           ({
-            owner: { firstName, lastName, email, picture, id: userId },
-            id,
-            image,
-            publishDate,
-            text,
-            tags,
-            link,
-            likes,
-          }) => (
-            <div key={id} className="container-item">
-              <div className="card-header">
-                <img src={picture} width="40" height="40" />
-                <h1 className="title">
-                  {firstName} {lastName}
-                </h1>
-                <h3 className="title">{email}</h3>
+             owner: { firstName, lastName, email, picture, id: userId },
+             id,
+             image,
+             publishDate,
+             text,
+             tags,
+             link,
+             likes,
+           }) => (
+          <div key={id} className="posts__item">
+            <div className="posts__image-holder">
+              <img className="posts__image" src={picture} alt="user picture" />
+            </div>
+            <h1 className="posts__title">
+              {firstName} {lastName}
+            </h1>
+            <span className="posts__info">{email}</span>
+            <span className="posts__info">{likes} Likes</span>
+            <span className="posts__info">{publishDate} Publish Date</span>
+            <div className="posts__details">
+              <div className="posts__image-holder">
+                <img className="posts__image" src={image} alt="animal picture" />
               </div>
-              <img src={image} width="300" height="300" />
               {tags.map(tag => (
-                <p key={tag}>{tag}</p>
+                <span className="posts__tag" key={tag}>Tag: {tag}</span>
               ))}
-              <p>{text}</p>
-              <a href={link} target="_blank">
-                {link}
-              </a>
-              <div className="post-likes">{likes} Likes</div>
-              <div className="post-likes">{publishDate}</div>
-
+              <p className="posts__text">{text}</p>
+              <div className="posts__details-link-holder">
+                <a className="posts__details-link" href={link} target="_blank">View</a>
+              </div>
+            </div>
+            <div className="posts__link-holder">
               <Link href={`/user/${userId}`} passHref>
-                <a role="presentation" className="more-button">
+                <a role="presentation" className="posts__link">
                   Go to owner profile
                 </a>
               </Link>
             </div>
-          ),
-        )}
+          </div>
+        ))}
       </div>
-      <style jsx>{`
-        .title {
-          margin: 0 0 1rem 0;
-        }
-        .container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        .container-item {
-          display: flex;
-          flex-direction: column;
-          width: 400px;
-          box-shadow: 0px 0px 5px 0px #e7e7e7;
-          margin: 1rem;
-          padding: 2rem;
-          transition: 0.3s all;
-          cursor: pointer;
-        }
-        .container-item:hover {
-          box-shadow: 0px 0px 15px 3px #e7e7e7;
-        }
-        .more-button {
-          color: #00a3ff;
-          font-size: 14px;
-          border: none;
-          border-radius: 5px;
-          box-shadow: 0px 0px 2px 1px #e7e7e7;
-          background-color: #fff;
-          padding: 0.5rem 1rem;
-          transition: 0.2s all;
-          text-decoration: none;
-        }
-        .more-button:hover {
-          box-shadow: 0px 0px 6px 1px #e7e7e7;
-        }
-      `}</style>
     </Layout>
   );
 }
