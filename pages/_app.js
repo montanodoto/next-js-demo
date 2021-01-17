@@ -12,9 +12,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <LoadingOverlay active={loading} spinner text="Loading your content...">
-      <Component {...pageProps} />
-    </LoadingOverlay>
+    <Component {...pageProps} />
   );
 }
 

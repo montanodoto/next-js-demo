@@ -8,58 +8,99 @@ import httpGet from '../utils';
 function Users({ data }) {
   return (
     <Layout>
-      <div className="container">
+      <style jsx>{`
+        .users {
+          max-width: 400px;
+          width: 100%;
+          margin: 0 auto;
+        }
+        .users__item {
+          margin-bottom: 24px;
+          padding: 24px 24px;
+          border: 1px solid #d8d8d8;
+          border-radius: 12px;
+          background-color: #fbfbfb;
+        }
+        .users__item:last-child {
+          margin-bottom: 0;
+        }
+        .users__image-holder {
+          width: 128px;
+          height: 128px;
+          margin: 0 auto;
+          border: 1px solid #d8d8d8;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        .users__image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .users__title{ 
+          margin-top: 16px;
+          font-weight: 700;
+          font-size: 16px;
+          color: #242424;
+          line-height: 18px;
+          text-align: center;
+        }
+        .users__title:first-letter {
+          text-transform: capitalize;
+        }
+        .users__email {
+          display: block;
+          margin-top: 8px;
+          font-weight: normal;
+          font-size: 14px;
+          color: #2b2b2b;
+          line-height: 16px;
+          text-align: center;
+        }
+        .users__link-holder {
+          margin-top: 16px;
+          text-align: center;
+        }
+        .users__link {
+          display: inline-block;
+          vertical-align: top;
+          min-width: 120px;
+          height: 32px;
+          padding: 0 16px;
+          border-radius: 4px;
+          font-weight: normal;
+          font-size: 14px;
+          color: #fff;
+          line-height: 32px;
+          text-align: center;
+          background-color: #0596e9;
+          transition: background-color 0.23s ease-in-out;
+        }
+        .users__link:hover {
+          background-color: #067abd;
+        }
+      `}</style>
+      <div className="users">
         {data.map(({ firstName, id, lastName, email, title, picture }) => (
-          <div key={id} className="container-item">
-            <h1 className="title">
+          <div key={id} className="users__item">
+            <div className="users__image-holder">
+              <img className="users__image" src={picture} alt="user picture" />
+            </div>
+            <h1 className="users__title">
               {title} {firstName} {lastName}
             </h1>
-            <p>{email}</p>
-            <Link href={`/user/${id}`} passHref>
-              <a role="presentation" className="more-button">
-                More info
-              </a>
-            </Link>
-            <img src={picture} />
+            <span className="users__email">{email}</span>
+            <div className="users__link-holder">
+              <Link href={`/user/${id}`} passHref>
+                <a role="presentation" className="users__link">
+                  More info
+                </a>
+              </Link>
+            </div>
           </div>
         ))}
       </div>
-      <style jsx>{`
-        .title {
-          margin: 0 0 1rem 0;
-        }
-        .container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        .container-item {
-          width: 400px;
-          box-shadow: 0px 0px 5px 0px #e7e7e7;
-          margin: 1rem;
-          padding: 2rem;
-          transition: 0.3s all;
-          cursor: pointer;
-        }
-        .container-item:hover {
-          box-shadow: 0px 0px 15px 3px #e7e7e7;
-        }
-        .more-button {
-          color: #00a3ff;
-          font-size: 14px;
-          border: none;
-          border-radius: 5px;
-          box-shadow: 0px 0px 2px 1px #e7e7e7;
-          background-color: #fff;
-          padding: 0.5rem 1rem;
-          transition: 0.2s all;
-          text-decoration: none;
-        }
-        .more-button:hover {
-          box-shadow: 0px 0px 6px 1px #e7e7e7;
-        }
-      `}</style>
     </Layout>
   );
 }
