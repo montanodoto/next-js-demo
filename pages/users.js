@@ -10,19 +10,16 @@ function Users({ data }) {
     <Layout>
       <style jsx>{`
         .users {
-          max-width: 400px;
-          width: 100%;
-          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 4fr 4fr 4fr;
+          grid-template-rows: 12fr;
+          grid-gap: 24px;
         }
         .users__item {
-          margin-bottom: 24px;
           padding: 24px 24px;
           border: 1px solid #d8d8d8;
           border-radius: 12px;
           background-color: #fbfbfb;
-        }
-        .users__item:last-child {
-          margin-bottom: 0;
         }
         .users__image-holder {
           width: 128px;
