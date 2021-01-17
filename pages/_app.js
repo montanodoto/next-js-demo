@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import Router from 'next/router';
 
-import LoadingOverlay from 'react-loading-overlay';
-
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -11,9 +9,7 @@ function MyApp({ Component, pageProps }) {
     Router.events.on('routeChangeError', () => setLoading(false));
   }, []);
 
-  return (
-    <Component {...pageProps} />
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

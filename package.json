@@ -9,8 +9,7 @@
   "dependencies": {
     "next": "latest",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-loading-overlay": "^1.0.1"
+    "react-dom": "^16.7.0"
   },
   "devDependencies": {
     "prettier": "^2.0.5"

@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 
 import { API_URL } from '../../constants';
 import httpGet from '../../utils';
-import Link from 'next/link';
 import Layout from '../../components/layout';
 
 function User({
@@ -45,7 +44,7 @@ function User({
           height: 100%;
           object-fit: cover;
         }
-        .user__title { 
+        .user__title {
           margin-top: 16px;
           font-weight: 700;
           font-size: 16px;
@@ -102,9 +101,13 @@ function User({
         <span className="user__info">Gender: {gender}</span>
         <span className="user__info">Date of Birth: {dateOfBirth}</span>
         <span className="user__info">Register Date: {registerDate}</span>
-        <span className="user__info">Address: {location.country}, {location.state}, {location.city}, {location.street}</span>
+        <span className="user__info">
+          Address: {location.country}, {location.state}, {location.city}, {location.street}
+        </span>
         <div className="user__link-holder">
-          <button className="user__link" onClick={back}>Back</button>
+          <button className="user__link" onClick={back}>
+            Back
+          </button>
         </div>
       </div>
     </Layout>
