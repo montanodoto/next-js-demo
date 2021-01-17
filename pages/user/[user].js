@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
+
 import { API_URL } from '../../constants';
 import httpGet from '../../utils';
 
-const User = ({
+function User({
   firstName,
   lastName,
   email,
@@ -13,7 +14,7 @@ const User = ({
   registerDate,
   picture,
   dateOfBirth,
-}) => {
+}) {
   const { back } = useRouter();
 
   return (
@@ -35,7 +36,7 @@ const User = ({
       <button onClick={back}>Back</button>
     </div>
   );
-};
+}
 
 export const getServerSideProps = async ({ query }) => {
   const userInfo = await httpGet({ url: `${API_URL}user/${query.user}` });

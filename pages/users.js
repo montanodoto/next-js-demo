@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 import { API_URL } from '../constants';
 import httpGet from '../utils';
 
-const Users = ({ data }) => {
+function Users({ data }) {
   return (
     <Layout>
       <div className="container">
@@ -15,7 +15,7 @@ const Users = ({ data }) => {
               {title} {firstName} {lastName}
             </h1>
             <p>{email}</p>
-            <Link href={`/dynamic-user/${id}`} passHref>
+            <Link href={`/user/${id}`} passHref>
               <a role="presentation" className="more-button">
                 More info
               </a>
@@ -62,7 +62,7 @@ const Users = ({ data }) => {
       `}</style>
     </Layout>
   );
-};
+}
 
 export const getServerSideProps = async () => {
   const { data } = await httpGet({ url: `${API_URL}user?limit=10` });
