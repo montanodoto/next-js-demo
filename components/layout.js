@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import Loader from './loader';
 
 import styles from '../styles/styledLayout';
 
@@ -46,6 +47,7 @@ export default function Layout({ children, title = 'This is the default title' }
           <span className="footer__text">{'I`m here to stay'}</span>
         </div>
       </footer>
+      <Loader />
     </>
   );
 }

@@ -63,20 +63,9 @@ export default css.global`
   .header__navigation-link.active {
     background-color: #1e67d4;
   }
-  @keyframes page {
-    0% {
-      transform: translate(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translate(0%);
-      opacity: 1;
-    }
-  }
   .main {
     grid-area: main;
     padding-top: 48px;
-    animation: page 0.5s ease-in-out forwards;
   }
   .main__content {
     padding: 24px 0 64px 0;
