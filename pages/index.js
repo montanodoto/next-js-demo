@@ -1,17 +1,29 @@
 import Layout from '../components/layout';
 
-export default function Home() {
+import httpGet from '../utils';
+
+export default function Home({ data }) {
+  console.log(data);
   return (
     <Layout>
-      <div>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-        galley of type and scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-        passages, and more recently with desktop publishing software like Aldus PageMaker including
-        versions of Lorem Ipsum.
-      </div>
+      {data.map(({ body, email, id, name }) => (
+        <div key={id}>
+          <span>{name}</span>
+          <span>{email}</span>
+          <span>{body}</span>
+        </div>
+      ))}
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const data = await httpGet(
+    { url: 'https://jsonplaceholder.typicode.com/comments' },
+    { method: 'POST' },
+  );
+
+  return {
+    props: { data },
+  };
 }
