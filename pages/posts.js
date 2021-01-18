@@ -9,7 +9,7 @@ import styles from '../styles/styledPosts';
 
 function Posts({ postsData }) {
   return (
-    <Layout>
+    <Layout title="Posts page">
       <style jsx>{styles}</style>
 
       <div className="posts">
@@ -73,12 +73,12 @@ function Posts({ postsData }) {
 
 // !! getServerSideProps can only be exported from a page. You can’t export it from non-page files.
 
-export const getServerSideProps = async () => {
+export async function getServerSideProps() {
   const { data } = await httpGet({ url: `${API_URL}post?limit=10` });
 
   return {
     props: { postsData: data },
   };
-};
+}
 
 export default Posts;

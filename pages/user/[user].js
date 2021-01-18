@@ -22,7 +22,7 @@ function User({
   const { back } = useRouter();
 
   return (
-    <Layout>
+    <Layout title="User page">
       <style jsx>{styles}</style>
       <div className="user">
         <div className="user__image-holder">
@@ -49,12 +49,12 @@ function User({
   );
 }
 
-export const getServerSideProps = async ({ query }) => {
+export async function getServerSideProps({ query }) {
   const userInfo = await httpGet({ url: `${API_URL}user/${query.user}` });
 
   return {
     props: { ...userInfo },
   };
-};
+}
 
 export default User;

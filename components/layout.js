@@ -1,9 +1,14 @@
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
 
 import styles from '../styles/styledLayout';
 
+import classNames from 'classnames';
+
 export default function Layout({ children, title = 'This is the default title' }) {
+  const { pathname } = useRouter();
+
   return (
     <>
       <Head>
@@ -23,17 +28,38 @@ export default function Layout({ children, title = 'This is the default title' }
         <nav className="header__navigation common-layout">
           <span className="header__navigation-item">
             <Link href="/">
-              <a className="header__navigation-link">Home</a>
+              <a
+                className={classNames({
+                  active: pathname === '/',
+                  'header__navigation-link': true,
+                })}
+              >
+                Home
+              </a>
             </Link>
           </span>
           <span className="header__navigation-item">
             <Link href="/users">
-              <a className="header__navigation-link">Users</a>
+              <a
+                className={classNames({
+                  active: pathname === '/users',
+                  'header__navigation-link': true,
+                })}
+              >
+                Users
+              </a>
             </Link>
           </span>
           <span className="header__navigation-item">
             <Link href="/posts">
-              <a className="header__navigation-link">Posts</a>
+              <a
+                className={classNames({
+                  active: pathname === '/posts',
+                  'header__navigation-link': true,
+                })}
+              >
+                Posts
+              </a>
             </Link>
           </span>
         </nav>

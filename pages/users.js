@@ -9,7 +9,7 @@ import styles from '../styles/styledUsers';
 
 function Users({ data }) {
   return (
-    <Layout>
+    <Layout title="Users page">
       <style jsx>{styles}</style>
       <div className="users">
         {data.map(({ firstName, id, lastName, email, title, picture }) => (
@@ -35,12 +35,12 @@ function Users({ data }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export async function getServerSideProps() {
   const { data } = await httpGet({ url: `${API_URL}user?limit=10` });
 
   return {
     props: { data },
   };
-};
+}
 
 export default Users;
