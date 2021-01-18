@@ -11,7 +11,6 @@ function Posts({ postsData }) {
   return (
     <Layout>
       <style jsx>{styles}</style>
-
       <div className="posts">
         {postsData.map(
           ({
@@ -25,34 +24,35 @@ function Posts({ postsData }) {
             likes,
           }) => (
             <div key={id} className="posts__item">
-              <div className="posts__image-holder">
-                <img className="posts__image" src={picture} alt="user picture" />
-              </div>
-              <h1 className="posts__title">
-                {firstName} {lastName}
-              </h1>
-              <span className="posts__info">{email}</span>
-              <span className="posts__info">{likes} Likes</span>
-              <span className="posts__info">{publishDate} Publish Date</span>
-              <div className="posts__details">
-                <div className="posts__image-holder">
-                  <img className="posts__image" src={image} alt="animal picture" />
-                </div>
-                {tags.map(tag => (
-                  <span className="posts__tag" key={tag}>
-                    Tag: {tag}
-                  </span>
-                ))}
-                <p className="posts__text">{text}</p>
-                <div className="posts__details-link-holder">
-                  <a className="posts__details-link" href={link} target="_blank">
-                    View
-                  </a>
-                </div>
-              </div>
-              <div className="posts__link-holder">
+              <div className="posts__head">
                 <Link href={`/user/${userId}`} passHref>
-                  <a role="presentation" className="posts__link">
+                  <a className="posts__avatar-link" role="presentation">
+                    <img className="posts__avatar" src={picture} alt="user picture" />
+                  </a>
+                </Link>
+                <strong className="posts__user-name">{firstName} {lastName}</strong>
+                <em className="posts__user-email">{email}</em>
+              </div>
+              <div className="posts__body">
+                <img className="posts__image" src={image} alt="animal picture" />
+                <div className="posts__tags">
+                  {tags.map(tag => (
+                    <span className="posts__tag" key={tag}>{tag}</span>
+                  ))}
+                </div>
+                <p className="posts__description">{text}</p>
+                <div className="posts__like-info">
+                  <span className="posts__likes">{likes} Likes</span>
+                  <span className="posts__likes-date">{publishDate}</span>
+                </div>
+              </div>
+              <div className="posts__foot">
+                <a className="posts__details-link" href={link} target="_blank">
+                  View
+                </a>
+                <br />
+                <Link href={`/user/${userId}`} passHref>
+                  <a role="presentation" className="posts__details-link">
                     Go to owner profile
                   </a>
                 </Link>
