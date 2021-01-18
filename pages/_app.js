@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'preact/hooks';
 import Router from 'next/router';
 
+import Loader from '../components/loader';
+
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -9,7 +11,12 @@ function MyApp({ Component, pageProps }) {
     Router.events.on('routeChangeError', () => setLoading(false));
   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+      {loading && <Loader />}
+    </>
+  );
 }
 
 export default MyApp;
