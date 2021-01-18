@@ -14,8 +14,8 @@ export default css.global`
   }
   .loader__roller{
     display: inline-block;
-    width: 80px;
-    height: 80px;
+    width: 128px;
+    height: 128px;
     position: absolute;
     top: 0;
     right: 0;

@@ -69,4 +69,15 @@ export default css`
   .users__link:hover {
     background-color: #067abd;
   }
+  @media screen and (max-width: 1023px) {
+    .users {
+      grid-template-columns: repeat(2, minmax(50%, 1fr));
+      grid-gap: 12px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .users {
+      grid-template-columns: repeat(1, minmax(100%, 1fr));
+    }
+  }
 `;

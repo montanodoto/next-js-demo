@@ -128,4 +128,14 @@ export default css`
   .posts__details-link:last-child{
     margin-bottom: 0;
   }
+   @media screen and (max-width: 1023px) {
+    .posts {
+      column-count: 2;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .posts {
+      column-count: 1;
+    }
+  }
 `;
