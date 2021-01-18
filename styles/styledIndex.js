@@ -37,4 +37,15 @@ export default css.global`
     color: #2b2b2b;
     line-height: 16px;
   }
+  @media screen and (max-width: 1024px) {
+    .home {
+      grid-template-columns: repeat(2, minmax(50%, 1fr));
+      grid-gap: 12px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .home {
+      grid-template-columns: repeat(1, minmax(100%, 1fr));
+    }
+  }
 `;

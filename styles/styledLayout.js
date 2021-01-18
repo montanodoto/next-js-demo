@@ -68,7 +68,7 @@ export default css.global`
     padding-top: 48px;
   }
   .main__content {
-    padding: 24px 0 64px 0;
+    padding: 24px 24px 64px 24px;
   }
   .footer {
     grid-area: footer;
