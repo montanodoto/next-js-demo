@@ -35,6 +35,7 @@ export default css.global`
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
     background-color: #1158c1;
   }
   .header__navigation {
